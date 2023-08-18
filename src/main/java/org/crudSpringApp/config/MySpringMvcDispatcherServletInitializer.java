@@ -1,5 +1,6 @@
-package org.crudSpringApp;
+package org.crudSpringApp.config;
 
+import org.crudSpringApp.config.SpringConfig;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 /**
