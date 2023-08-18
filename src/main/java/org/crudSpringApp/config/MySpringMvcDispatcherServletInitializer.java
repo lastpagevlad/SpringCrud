@@ -1,7 +1,11 @@
 package org.crudSpringApp.config;
 
 import org.crudSpringApp.config.SpringConfig;
+import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 
 /**
  * @author Neil Alishev
@@ -20,5 +24,16 @@ public class MySpringMvcDispatcherServletInitializer extends AbstractAnnotationC
     @Override
     protected String[] getServletMappings() {
         return new String[]{"/"};
+    }
+
+    @Override
+    public void onStartup(ServletContext aServletContext) throws ServletException{
+        super.onStartup(aServletContext);
+        registerHiddenFieldFilter(aServletContext);
+    }
+
+    private void registerHiddenFieldFilter(ServletContext aContext){
+        aContext.addFilter("hiddenHttp<ethodFilter",
+                new HiddenHttpMethodFilter()).addMappingForUrlPatterns(null,true, "/*");
     }
 }
